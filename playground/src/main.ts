@@ -13,4 +13,4 @@ app.use(router)
 
 app.mount('#app')
 
-throw new Error('error h1')
+// throw new Error('error h1')

@@ -2,12 +2,12 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import c from 'picocolors'
-import { deployCheck, printLogs } from '.'
+import { printLogs, serveAndCheck } from '.'
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '../../')
 const staticPath = resolve(__dirname, 'playground/dist')
 
-const logList = await deployCheck({
+const logList = await serveAndCheck({
   servePath: staticPath,
 })
 

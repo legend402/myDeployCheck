@@ -26,7 +26,7 @@ interface ConsoleLog {
 
 type LogType = ErrorLog | ConsoleLog
 
-export async function deployCheck(options: Option) {
+export async function serveAndCheck(options: Option) {
   const { port = 8099, servePath, waitUntil = 'networkidle' } = options
   const URL = `http://localhost:${port}`
 
@@ -70,12 +70,18 @@ export async function deployCheck(options: Option) {
 }
 
 export const printLogs = (logList: LogType[]) => {
+  if (!logList.length) {
+    console.log()
+    console.log(c.inverse(c.bold(c.green('  my deploy check plugin  '))) + c.green(' no error find'))
+    console.log()
+    return
+  }
   console.error()
-  console.log(c.inverse(c.bold(c.red('  my deploy check plugin  '))) + c.red(`   ${logList.length} errors find`))
+  console.error(c.inverse(c.bold(c.red('  my deploy check plugin  '))) + c.red(`   ${logList.length} errors find`))
   console.error()
 
   logList.forEach((log, idx) => {
-    console.log(c.red(`--------- ${new Date(log.timestamp).toLocaleTimeString()} Error ${idx + 1}----------`))
+    console.error(c.red(`--------- ${new Date(log.timestamp).toLocaleTimeString()} Error ${idx + 1}----------`))
     if (log.type === 'error')
       console.error(log.error)
     else

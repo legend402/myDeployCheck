@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  throw new Error('feafe')
+  // throw new Error('feafe')
 </script>
 
 <template>
