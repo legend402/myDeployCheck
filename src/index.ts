@@ -3,28 +3,7 @@ import { chromium } from 'playwright'
 import sirv from 'sirv'
 import polka from 'polka'
 import c from 'picocolors'
-
-type WaitUntils = 'domcontentloaded' | 'load' | 'networkidle' | 'commit'
-
-export interface Option {
-  servePath: string
-  port?: number
-  waitUntil?: WaitUntils
-}
-
-interface ErrorLog {
-  type: 'error'
-  error: Error
-  timestamp: number
-}
-
-interface ConsoleLog {
-  type: 'console'
-  arugment: unknown[]
-  timestamp: number
-}
-
-type LogType = ErrorLog | ConsoleLog
+import type { LogType, Option } from './type'
 
 export async function serveAndCheck(options: Option) {
   const { port = 8099, servePath, waitUntil = 'networkidle' } = options
