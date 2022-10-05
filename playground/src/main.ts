@@ -10,6 +10,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-throw new Error('error h1')
 
 app.mount('#app')
+
+throw new Error('error h1')
