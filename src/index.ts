@@ -16,8 +16,8 @@ export async function serveAndCheck(options: Option) {
         throw err
     })
 
-  const broswer = await chromium.launch()
-  const page = await broswer.newPage()
+  const browser = await chromium.launch()
+  const page = await browser.newPage()
 
   const logList: LogType[] = []
 
@@ -26,7 +26,7 @@ export async function serveAndCheck(options: Option) {
       logList.push({
         type: 'console',
         timestamp: Date.now(),
-        arugment: await Promise.all(message.args().map(i => i.jsonValue())),
+        argument: await Promise.all(message.args().map(i => i.jsonValue())),
       })
     }
   })
@@ -42,7 +42,7 @@ export async function serveAndCheck(options: Option) {
 
   Promise.all([
     page.close(),
-    broswer.close(),
+    browser.close(),
   ])
 
   return logList
@@ -64,6 +64,6 @@ export const printLogs = (logList: LogType[]) => {
     if (log.type === 'error')
       console.error(log.error)
     else
-      console.error(...log.arugment)
+      console.error(...log.argument)
   })
 }

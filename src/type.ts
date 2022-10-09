@@ -1,9 +1,9 @@
-type WaitUntils = 'domcontentloaded' | 'load' | 'networkidle' | 'commit'
+type WaitUtils = 'domcontentloaded' | 'load' | 'networkidle' | 'commit'
 
 export interface Option {
   servePath: string
   port?: number
-  waitUntil?: WaitUntils
+  waitUntil?: WaitUtils
 }
 interface ErrorLog {
   type: 'error'
@@ -12,7 +12,7 @@ interface ErrorLog {
 }
 interface ConsoleLog {
   type: 'console'
-  arugment: unknown[]
+  argument: unknown[]
   timestamp: number
 }
 export type LogType = ErrorLog | ConsoleLog

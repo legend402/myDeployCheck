@@ -12,5 +12,3 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
-
-// throw new Error('error h1')
